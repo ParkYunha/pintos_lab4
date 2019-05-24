@@ -75,6 +75,14 @@ syscall_handler (struct intr_frame *f)
   {
     userp_exit(-1);
   }
+  if(get_user((uint8_t *)f->esp + 4) == -1)
+  {
+    userp_exit(-1);
+  }
+  if(get_user((uint8_t *)f->esp + 8) == -1)
+  {
+    userp_exit(-1);
+  }
   
 
   int sys_num  = *(uint32_t *)(f->esp);
@@ -253,6 +261,11 @@ syscall_handler (struct intr_frame *f)
         {
           userp_exit(-1);
         }
+        if(get_user(second) == -1)
+        {
+          userp_exit(-1);
+        }
+
         sema_down(&file_sema);
         f->eax = file_read(thread_current()->f_d[first], second, third);
         sema_up(&file_sema);
