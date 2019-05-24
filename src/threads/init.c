@@ -33,6 +33,7 @@
 #include "devices/disk.h"
 #include "filesys/filesys.h"
 #include "filesys/fsutil.h"
+#include "filesys/cache.h"
 #endif
 
 /* Amount of physical memory, in 4 kB pages. */
@@ -113,6 +114,7 @@ main (void)
   /* Initialize file system. */
   disk_init ();
   filesys_init (format_filesys);
+  buffer_cache_init();
 #endif
 
   printf ("Boot complete.\n");

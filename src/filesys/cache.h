@@ -12,8 +12,8 @@ struct cache_entry
   disk_sector_t sector_num;   /* Sector number which this cached data came from. */ 
   bool valid_bit;     /* True if this entry has cached data. */
   bool dirty_bit;     /* True if this data has been modified. */
-  struct list_elem elem;    /* List element for buffer_cache list. */
-}
+  struct list_elem *elem;    /* List element for buffer_cache list. */
+};
 
 
 //functions
