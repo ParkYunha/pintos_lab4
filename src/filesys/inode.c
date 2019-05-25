@@ -81,6 +81,7 @@ inode_create (disk_sector_t sector, off_t length)
   /* If this assertion fails, the inode structure is not exactly
      one sector in size, and you should fix that. */
   ASSERT (sizeof *disk_inode == DISK_SECTOR_SIZE);
+  
 
   disk_inode = calloc (1, sizeof *disk_inode);
   if (disk_inode != NULL)
@@ -91,6 +92,8 @@ inode_create (disk_sector_t sector, off_t length)
       if (free_map_allocate (sectors, &disk_inode->start))
         {
           // disk_write (filesys_disk, sector, disk_inode);
+          // printf("create length %u | %u\n",length,disk_inode->length); //debug
+          // printf("create write to buffer | addr %p\n",disk_inode);     //debug
           cache_write(sector, disk_inode);
           if (sectors > 0) 
             {
@@ -142,6 +145,7 @@ inode_open (disk_sector_t sector)
   inode->removed = false;
   // disk_read (filesys_disk, inode->sector, &inode->data);
   cache_read(inode->sector, &inode->data);
+
   return inode;
 }
 
@@ -270,7 +274,7 @@ inode_write_at (struct inode *inode, const void *buffer_, off_t size,
 
   if (inode->deny_write_cnt)
     return 0;
-
+//  printf("len %u | add %p\n",inode_length(inode),inode);    //debug
   while (size > 0) 
     {
       /* Sector to write, starting byte offset within sector. */
@@ -284,6 +288,10 @@ inode_write_at (struct inode *inode, const void *buffer_, off_t size,
 
       /* Number of bytes to actually write into this sector. */
       int chunk_size = size < min_left ? size : min_left;
+
+      // printf("\n inode %p | buf %p | size %u | offs %u\n",inode, buffer_, size, offset);
+      // printf("len %u | sec ofs %u\n",inode_length(inode),sector_ofs);
+      // printf("chunk %d | min_left %d | inode_left %d | sector_left %d\n",chunk_size,min_left,inode_left,sector_left);
       if (chunk_size <= 0)
         break;
 

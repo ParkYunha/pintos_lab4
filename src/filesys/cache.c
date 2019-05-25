@@ -18,19 +18,21 @@ struct semaphore cache_sema;
 void cache_init()
 {
   int i;
+  
+  list_init(&buffer_cache_list);
+  
   for(i = 0; i < MAX_CACHE_SIZE; ++i)
   {
-    struct cache_entry *cache;
+    struct cache_entry *cache = calloc(1, sizeof (struct cache_entry));
 
-    cache->addr = malloc (DISK_SECTOR_SIZE); //FIXME:
+    cache->addr = calloc (1, DISK_SECTOR_SIZE);
     cache->has_data = false;
+    cache->sector_num = -1;
     cache->modified = false;
     list_push_back(&buffer_cache_list, &(cache->elem));
   }
-
   sema_init(&cache_sema, 1);
   thread_create("cache_rewrite", 0, cache_periodic_rewrite, NULL);
-    
 }
 
 
@@ -92,6 +94,7 @@ void cache_evict()
     disk_write(filesys_disk, cache->sector_num, cache->addr);
   }
   free(cache->addr);
+  free(cache);
 }
 
 
@@ -99,15 +102,17 @@ void cache_evict()
 void cache_read(disk_sector_t sector, void *buffer)
 {
   sema_down(&cache_sema);
+  // printf("cache read(%d)\n", sector); //for debug
 
   struct cache_entry *find_cache = cache_search(sector);
 
   if(!find_cache)  //cache miss => fetch to cache from disk
   {
     struct cache_entry *new_cache = cache_get_free();
-    if(!new_cache)
+    if(new_cache==NULL)
     {
       cache_evict();
+      new_cache = calloc(1, sizeof (struct cache_entry));
       new_cache->has_data = true;
       new_cache->modified = false;
       new_cache->sector_num = sector;
@@ -130,7 +135,7 @@ void cache_read(disk_sector_t sector, void *buffer)
   else    //cache hit => read from cache
   {
     memcpy(buffer, find_cache->addr, DISK_SECTOR_SIZE);
-    find_cache->modified = true;
+    // find_cache->modified = true;
   }
 
   sema_up(&cache_sema);
@@ -140,19 +145,20 @@ void cache_read(disk_sector_t sector, void *buffer)
 void cache_write(disk_sector_t sector, void *buffer)
 {
   sema_down(&cache_sema);
-
   struct cache_entry *find_cache = cache_search(sector);
 
   if(!find_cache)  //cache miss => fetch to cache from disk
   {
     struct cache_entry *new_cache = cache_get_free();
-    if(!new_cache)
+    if(new_cache==NULL)
     {
       cache_evict();
+      new_cache = calloc(1, sizeof (struct cache_entry));
       new_cache->has_data = true;
       new_cache->modified = false;
       new_cache->sector_num = sector;
       new_cache->addr = malloc(DISK_SECTOR_SIZE);
+      // PANIC('write - 왜 뉴캐시가 없냐\n');
 
       list_push_back(&buffer_cache_list, &new_cache->elem);
     }
