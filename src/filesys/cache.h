@@ -17,10 +17,13 @@ struct cache_entry
 
 
 //functions
-void buffer_cache_init();
+void cache_init();
 struct cache_entry *cache_search(disk_sector_t sector);
 struct cache_entry *cache_get_free();
 void cache_evict();
 
 void cache_read(disk_sector_t sector, void *buffer);
 void cache_write(disk_sector_t sector, void *buffer);
+
+void cache_periodic_rewrite();
+void cache_rewrite_disk();

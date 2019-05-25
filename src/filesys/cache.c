@@ -5,15 +5,17 @@
 #include "filesys/filesys.h"
 #include "threads/synch.h"
 #include "threads/palloc.h"
+#include "threads/malloc.h"
+#include "threads/thread.h"
+#include "devices/timer.h"
 
 
 struct list buffer_cache_list;
 struct disk *filesys_disk;
-struct bitmap *cache_map;
+struct bitmap *cache_map; //FIXME: we need it?
 struct semaphore cache_sema;
-// size_t cache_evict_num; //TODO: i dont think we need it
 
-void buffer_cache_init()
+void cache_init()
 {
   int i;
   for(i = 0; i < MAX_CACHE_SIZE; ++i)
@@ -23,11 +25,11 @@ void buffer_cache_init()
     cache->addr = malloc (DISK_SECTOR_SIZE); //FIXME:
     cache->has_data = false;
     cache->modified = false;
-
     list_push_back(&buffer_cache_list, &(cache->elem));
   }
 
   sema_init(&cache_sema, 1);
+  thread_create("cache_rewrite", 0, cache_periodic_rewrite, NULL);
     
 }
 
@@ -165,10 +167,12 @@ void cache_write(disk_sector_t sector, void *buffer)
     disk_read(filesys_disk, new_cache->sector_num, new_cache->addr);
     //write at cache
     memcpy(new_cache->addr, buffer, DISK_SECTOR_SIZE);
+    new_cache->modified = true;
   }
   else    //cache hit => write at cache
   {
     memcpy(find_cache->addr, buffer, DISK_SECTOR_SIZE);
+    find_cache->modified = true;
   }
 
   sema_up(&cache_sema);
@@ -176,18 +180,37 @@ void cache_write(disk_sector_t sector, void *buffer)
 
 
 /* Periodically rewrite the cache back to disk, using timer_sleep(). */
-cache_periodic_rewrite()
+void cache_periodic_rewrite()
 {
-  //timer sleep
-  //use cache_rewrite_disk()
-
+  //busy waiting
+  while(true)
+  {
+    timer_sleep(5 * TIMER_FREQ);
+    cache_rewrite_disk();
+  }
 }
 
 /* Write back all the cached data to disk. */
-cache_rewrite_disk()
+void cache_rewrite_disk()
 {
+  sema_down(&cache_sema);
+  struct cache_entry *cache;
+  struct list_elem *e;
 
+  if(!list_empty(&buffer_cache_list))
+  {
+    for(e = list_begin(&buffer_cache_list); e != list_end(&buffer_cache_list); e = list_next(e))
+    {
+      cache = list_entry(e, struct cache_entry, elem);
+      if(cache->modified == true)
+      {
+        disk_write(filesys_disk, cache->sector_num, cache->addr);
+        cache->modified = false;
+      }
+    }
+  }
 
+  sema_up(&cache_sema);
 }
 
 
