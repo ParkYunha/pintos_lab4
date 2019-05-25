@@ -1,0 +1,25 @@
+Copying tests/userprog/halt into /tmp/wYFEuuKT0Z.dsk...
+Writing command line to /tmp/JOFsg5Wjz8.dsk...
+qemu -hda /tmp/JOFsg5Wjz8.dsk -hdb /tmp/XuAWu64HUN.dsk -hdc /tmp/wYFEuuKT0Z.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put halt run halt
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  104,755,200 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 97 sector (48 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...Kernel PANIC at ../../lib/kernel/list.c:171 in list_insert(): assertion `is_interior (before) || is_tail (before)' failed.
+Call stack: 0xc01071d9 0xc010731a 0xc01075cd 0xc01029d3 0xc010cca6 0xc010c4dc 0xc010b41f 0xc010b3a4 0xc01005ee.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 50 ticks
+Thread: 0 idle ticks, 50 kernel ticks, 0 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 0 reads, 0 writes
+hd1:0: 0 reads, 0 writes
+Console: 994 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

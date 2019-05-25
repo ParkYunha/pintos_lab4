@@ -1,0 +1,1955 @@
+TOTAL TESTING SCORE: 40.4%
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+SUMMARY BY TEST SET
+
+Test Set                                      Pts Max  % Ttl  % Max
+--------------------------------------------- --- --- ------ ------
+tests/filesys/extended/Rubric.functionality     1/ 34   0.9%/ 30.0%
+tests/filesys/extended/Rubric.robustness        3/ 10   4.5%/ 15.0%
+tests/filesys/extended/Rubric.persistence       0/ 23   0.0%/ 20.0%
+tests/filesys/base/Rubric                      30/ 30  20.0%/ 20.0%
+tests/userprog/Rubric.functionality           108/108  10.0%/ 10.0%
+tests/userprog/Rubric.robustness               88/ 88   5.0%/  5.0%
+--------------------------------------------- --- --- ------ ------
+Total                                                  40.4%/100.0%
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+SUMMARY OF INDIVIDUAL TESTS
+
+Functionality of extended file system (tests/filesys/extended/Rubric.functionality):
+	- Test directory support.
+	  ** 0/ 1 tests/filesys/extended/dir-mkdir
+	  ** 0/ 3 tests/filesys/extended/dir-mk-tree
+
+	  ** 0/ 1 tests/filesys/extended/dir-rmdir
+	  ** 0/ 3 tests/filesys/extended/dir-rm-tree
+
+	  ** 0/ 5 tests/filesys/extended/dir-vine
+
+	- Test file growth.
+	     1/ 1 tests/filesys/extended/grow-create
+	  ** 0/ 1 tests/filesys/extended/grow-seq-sm
+	  ** 0/ 3 tests/filesys/extended/grow-seq-lg
+	  ** 0/ 3 tests/filesys/extended/grow-sparse
+	  ** 0/ 3 tests/filesys/extended/grow-two-files
+	  ** 0/ 1 tests/filesys/extended/grow-tell
+	  ** 0/ 1 tests/filesys/extended/grow-file-size
+
+	- Test directory growth.
+	  ** 0/ 1 tests/filesys/extended/grow-dir-lg
+	  ** 0/ 1 tests/filesys/extended/grow-root-sm
+	  ** 0/ 1 tests/filesys/extended/grow-root-lg
+
+	- Test writing from multiple processes.
+	  ** 0/ 5 tests/filesys/extended/syn-rw
+
+	- Section summary.
+	      1/ 16 tests passed
+	      1/ 34 points subtotal
+
+Robustness of file system (tests/filesys/extended/Rubric.robustness):
+	  ** 0/ 1 tests/filesys/extended/dir-empty-name
+	  ** 0/ 1 tests/filesys/extended/dir-open
+	  ** 0/ 1 tests/filesys/extended/dir-over-file
+	  ** 0/ 1 tests/filesys/extended/dir-under-file
+
+	  ** 0/ 3 tests/filesys/extended/dir-rm-cwd
+	     2/ 2 tests/filesys/extended/dir-rm-parent
+	     1/ 1 tests/filesys/extended/dir-rm-root
+
+	- Section summary.
+	      2/  7 tests passed
+	      3/ 10 points subtotal
+
+Persistence of file system (tests/filesys/extended/Rubric.persistence):
+	  ** 0/ 1 tests/filesys/extended/dir-empty-name-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-mk-tree-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-mkdir-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-open-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-over-file-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-rm-cwd-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-rm-parent-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-rm-root-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-rm-tree-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-rmdir-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-under-file-persistence
+	  ** 0/ 1 tests/filesys/extended/dir-vine-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-create-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-dir-lg-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-file-size-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-root-lg-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-root-sm-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-seq-lg-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-seq-sm-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-sparse-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-tell-persistence
+	  ** 0/ 1 tests/filesys/extended/grow-two-files-persistence
+	  ** 0/ 1 tests/filesys/extended/syn-rw-persistence
+
+	- Section summary.
+	      0/ 23 tests passed
+	      0/ 23 points subtotal
+
+Functionality of base file system (tests/filesys/base/Rubric):
+	- Test basic support for small files.
+	     1/ 1 tests/filesys/base/sm-create
+	     2/ 2 tests/filesys/base/sm-full
+	     2/ 2 tests/filesys/base/sm-random
+	     2/ 2 tests/filesys/base/sm-seq-block
+	     3/ 3 tests/filesys/base/sm-seq-random
+
+	- Test basic support for large files.
+	     1/ 1 tests/filesys/base/lg-create
+	     2/ 2 tests/filesys/base/lg-full
+	     2/ 2 tests/filesys/base/lg-random
+	     2/ 2 tests/filesys/base/lg-seq-block
+	     3/ 3 tests/filesys/base/lg-seq-random
+
+	- Test synchronized multiprogram access to files.
+	     4/ 4 tests/filesys/base/syn-read
+	     4/ 4 tests/filesys/base/syn-write
+	     2/ 2 tests/filesys/base/syn-remove
+
+	- Section summary.
+	     13/ 13 tests passed
+	     30/ 30 points subtotal
+
+Functionality of system calls (tests/userprog/Rubric.functionality):
+	- Test argument passing on Pintos command line.
+	     3/ 3 tests/userprog/args-none
+	     3/ 3 tests/userprog/args-single
+	     3/ 3 tests/userprog/args-multiple
+	     3/ 3 tests/userprog/args-many
+	     3/ 3 tests/userprog/args-dbl-space
+
+	- Test "create" system call.
+	     3/ 3 tests/userprog/create-empty
+	     3/ 3 tests/userprog/create-long
+	     3/ 3 tests/userprog/create-normal
+	     3/ 3 tests/userprog/create-exists
+
+	- Test "open" system call.
+	     3/ 3 tests/userprog/open-missing
+	     3/ 3 tests/userprog/open-normal
+	     3/ 3 tests/userprog/open-twice
+
+	- Test "read" system call.
+	     3/ 3 tests/userprog/read-normal
+	     3/ 3 tests/userprog/read-zero
+
+	- Test "write" system call.
+	     3/ 3 tests/userprog/write-normal
+	     3/ 3 tests/userprog/write-zero
+
+	- Test "close" system call.
+	     3/ 3 tests/userprog/close-normal
+
+	- Test "exec" system call.
+	     5/ 5 tests/userprog/exec-once
+	     5/ 5 tests/userprog/exec-multiple
+	     5/ 5 tests/userprog/exec-arg
+
+	- Test "wait" system call.
+	     5/ 5 tests/userprog/wait-simple
+	     5/ 5 tests/userprog/wait-twice
+
+	- Test "exit" system call.
+	     5/ 5 tests/userprog/exit
+
+	- Test "halt" system call.
+	     3/ 3 tests/userprog/halt
+
+	- Test recursive execution of user programs.
+	    15/15 tests/userprog/multi-recurse
+
+	- Test read-only executable feature.
+	     3/ 3 tests/userprog/rox-simple
+	     3/ 3 tests/userprog/rox-child
+	     3/ 3 tests/userprog/rox-multichild
+
+	- Section summary.
+	     28/ 28 tests passed
+	    108/108 points subtotal
+
+Robustness of system calls (tests/userprog/Rubric.robustness):
+	- Test robustness of file descriptor handling.
+	     2/ 2 tests/userprog/close-stdin
+	     2/ 2 tests/userprog/close-stdout
+	     2/ 2 tests/userprog/close-bad-fd
+	     2/ 2 tests/userprog/close-twice
+	     2/ 2 tests/userprog/read-bad-fd
+	     2/ 2 tests/userprog/read-stdout
+	     2/ 2 tests/userprog/write-bad-fd
+	     2/ 2 tests/userprog/write-stdin
+	     2/ 2 tests/userprog/multi-child-fd
+
+	- Test robustness of pointer handling.
+	     3/ 3 tests/userprog/create-bad-ptr
+	     3/ 3 tests/userprog/exec-bad-ptr
+	     3/ 3 tests/userprog/open-bad-ptr
+	     3/ 3 tests/userprog/read-bad-ptr
+	     3/ 3 tests/userprog/write-bad-ptr
+
+	- Test robustness of buffer copying across page boundaries.
+	     3/ 3 tests/userprog/create-bound
+	     3/ 3 tests/userprog/open-boundary
+	     3/ 3 tests/userprog/read-boundary
+	     3/ 3 tests/userprog/write-boundary
+
+	- Test handling of null pointer and empty strings.
+	     2/ 2 tests/userprog/create-null
+	     2/ 2 tests/userprog/open-null
+	     2/ 2 tests/userprog/open-empty
+
+	- Test robustness of system call implementation.
+	     3/ 3 tests/userprog/sc-bad-arg
+	     3/ 3 tests/userprog/sc-bad-sp
+	     5/ 5 tests/userprog/sc-boundary
+	     5/ 5 tests/userprog/sc-boundary-2
+
+	- Test robustness of "exec" and "wait" system calls.
+	     5/ 5 tests/userprog/exec-missing
+	     5/ 5 tests/userprog/wait-bad-pid
+	     5/ 5 tests/userprog/wait-killed
+
+	- Test robustness of exception handling.
+	     1/ 1 tests/userprog/bad-read
+	     1/ 1 tests/userprog/bad-write
+	     1/ 1 tests/userprog/bad-jump
+	     1/ 1 tests/userprog/bad-read2
+	     1/ 1 tests/userprog/bad-write2
+	     1/ 1 tests/userprog/bad-jump2
+
+	- Section summary.
+	     34/ 34 tests passed
+	     88/ 88 points subtotal
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-mkdir FAILURE:
+
+run: open "b": FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-mkdir:
+
+Copying tests/filesys/extended/dir-mkdir into /tmp/D5baRWxMl9.dsk...
+Copying tests/filesys/extended/tar into /tmp/D5baRWxMl9.dsk...
+Writing command line to /tmp/Fu7dZwKBrH.dsk...
+qemu -hda /tmp/Fu7dZwKBrH.dsk -hdb tmp.dsk -hdc /tmp/D5baRWxMl9.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-mkdir put tar run dir-mkdir
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 209 sector (104 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-mkdir' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-mkdir':
+(dir-mkdir) begin
+(dir-mkdir) mkdir "a"
+(dir-mkdir) create "a/b"
+(dir-mkdir) chdir "a"
+(dir-mkdir) open "b"
+(dir-mkdir) open "b": FAILED
+dir-mkdir: exit(1)
+Execution of 'dir-mkdir' complete.
+Timer: 113 ticks
+Thread: 0 idle ticks, 112 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 127 reads, 433 writes
+hd1:0: 209 reads, 0 writes
+Console: 950 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-mk-tree FAILURE:
+
+run: create "/0/1/0/2": FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-mk-tree:
+
+Copying tests/filesys/extended/dir-mk-tree into /tmp/tgvAKTj12D.dsk...
+Copying tests/filesys/extended/tar into /tmp/tgvAKTj12D.dsk...
+Writing command line to /tmp/4Qqd65e02f.dsk...
+qemu -hda /tmp/4Qqd65e02f.dsk -hdb tmp.dsk -hdc /tmp/tgvAKTj12D.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-mk-tree put tar run dir-mk-tree
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 214 sector (107 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-mk-tree' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-mk-tree':
+(dir-mk-tree) begin
+(dir-mk-tree) creating /0/0/0/0 through /3/2/2/3...
+(dir-mk-tree) create "/0/1/0/2": FAILED
+dir-mk-tree: exit(1)
+Execution of 'dir-mk-tree' complete.
+Timer: 124 ticks
+Thread: 0 idle ticks, 113 kernel ticks, 11 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 537 reads, 498 writes
+hd1:0: 214 reads, 0 writes
+Console: 938 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-rmdir FAILURE:
+
+run: rmdir "a": FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-rmdir:
+
+Copying tests/filesys/extended/dir-rmdir into /tmp/u3vKi8TThz.dsk...
+Copying tests/filesys/extended/tar into /tmp/u3vKi8TThz.dsk...
+Writing command line to /tmp/DCVXS5eAdq.dsk...
+qemu -hda /tmp/DCVXS5eAdq.dsk -hdb tmp.dsk -hdc /tmp/u3vKi8TThz.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-rmdir put tar run dir-rmdir
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 209 sector (104 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-rmdir' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-rmdir':
+(dir-rmdir) begin
+(dir-rmdir) mkdir "a"
+(dir-rmdir) rmdir "a"
+(dir-rmdir) rmdir "a": FAILED
+dir-rmdir: exit(1)
+Execution of 'dir-rmdir' complete.
+Timer: 110 ticks
+Thread: 0 idle ticks, 109 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 104 reads, 428 writes
+hd1:0: 209 reads, 0 writes
+Console: 905 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-rm-tree FAILURE:
+
+run: create "/0/1/0/2": FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-rm-tree:
+
+Copying tests/filesys/extended/dir-rm-tree into /tmp/DdHUnXcVjN.dsk...
+Copying tests/filesys/extended/tar into /tmp/DdHUnXcVjN.dsk...
+Writing command line to /tmp/A6c6vW1jo1.dsk...
+qemu -hda /tmp/A6c6vW1jo1.dsk -hdb tmp.dsk -hdc /tmp/DdHUnXcVjN.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-rm-tree put tar run dir-rm-tree
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 217 sector (108 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-rm-tree' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-rm-tree':
+(dir-rm-tree) begin
+(dir-rm-tree) creating /0/0/0/0 through /3/2/2/3...
+(dir-rm-tree) create "/0/1/0/2": FAILED
+dir-rm-tree: exit(1)
+Execution of 'dir-rm-tree' complete.
+Timer: 122 ticks
+Thread: 0 idle ticks, 109 kernel ticks, 13 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 539 reads, 504 writes
+hd1:0: 217 reads, 0 writes
+Console: 938 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-vine FAILURE:
+
+run: created files and directories only to level 0: FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-vine:
+
+Copying tests/filesys/extended/dir-vine into /tmp/gGKBU2vUI1.dsk...
+Copying tests/filesys/extended/tar into /tmp/gGKBU2vUI1.dsk...
+Writing command line to /tmp/enObqYQzsO.dsk...
+qemu -hda /tmp/enObqYQzsO.dsk -hdb tmp.dsk -hdc /tmp/gGKBU2vUI1.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-vine put tar run dir-vine
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 213 sector (106 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-vine' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-vine':
+(dir-vine) begin
+(dir-vine) creating many levels of files and directories...
+(dir-vine) created files and directories only to level 0: FAILED
+dir-vine: exit(1)
+Execution of 'dir-vine' complete.
+Timer: 116 ticks
+Thread: 0 idle ticks, 115 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 125 reads, 443 writes
+hd1:0: 213 reads, 0 writes
+Console: 949 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-seq-sm FAILURE:
+
+run: write 1234 bytes at offset 0 in "testme" failed: FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-seq-sm:
+
+Copying tests/filesys/extended/grow-seq-sm into /tmp/ancJ9msNiC.dsk...
+Copying tests/filesys/extended/tar into /tmp/ancJ9msNiC.dsk...
+Writing command line to /tmp/opp5ilUPfb.dsk...
+qemu -hda /tmp/opp5ilUPfb.dsk -hdb tmp.dsk -hdc /tmp/ancJ9msNiC.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-seq-sm put tar run grow-seq-sm
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 210 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-seq-sm' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-seq-sm':
+(grow-seq-sm) begin
+(grow-seq-sm) create "testme"
+(grow-seq-sm) open "testme"
+(grow-seq-sm) writing "testme"
+(grow-seq-sm) write 1234 bytes at offset 0 in "testme" failed: FAILED
+grow-seq-sm: exit(1)
+Execution of 'grow-seq-sm' complete.
+Timer: 112 ticks
+Thread: 0 idle ticks, 110 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 115 reads, 434 writes
+hd1:0: 210 reads, 0 writes
+Console: 1004 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-seq-lg FAILURE:
+
+run: write 1234 bytes at offset 0 in "testme" failed: FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-seq-lg:
+
+Copying tests/filesys/extended/grow-seq-lg into /tmp/w4iu13NinG.dsk...
+Copying tests/filesys/extended/tar into /tmp/w4iu13NinG.dsk...
+Writing command line to /tmp/9uBF4v7tTh.dsk...
+qemu -hda /tmp/9uBF4v7tTh.dsk -hdb tmp.dsk -hdc /tmp/w4iu13NinG.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-seq-lg put tar run grow-seq-lg
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 210 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-seq-lg' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-seq-lg':
+(grow-seq-lg) begin
+(grow-seq-lg) create "testme"
+(grow-seq-lg) open "testme"
+(grow-seq-lg) writing "testme"
+(grow-seq-lg) write 1234 bytes at offset 0 in "testme" failed: FAILED
+grow-seq-lg: exit(1)
+Execution of 'grow-seq-lg' complete.
+Timer: 106 ticks
+Thread: 0 idle ticks, 103 kernel ticks, 3 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 115 reads, 434 writes
+hd1:0: 210 reads, 0 writes
+Console: 1004 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-sparse FAILURE:
+
+run: write "testfile": FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-sparse:
+
+Copying tests/filesys/extended/grow-sparse into /tmp/UlToS3Bz5v.dsk...
+Copying tests/filesys/extended/tar into /tmp/UlToS3Bz5v.dsk...
+Writing command line to /tmp/ZWzuCsuqDE.dsk...
+qemu -hda /tmp/ZWzuCsuqDE.dsk -hdb tmp.dsk -hdc /tmp/UlToS3Bz5v.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-sparse put tar run grow-sparse
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 210 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-sparse' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-sparse':
+(grow-sparse) begin
+(grow-sparse) create "testfile"
+(grow-sparse) open "testfile"
+(grow-sparse) seek "testfile"
+(grow-sparse) write "testfile"
+(grow-sparse) write "testfile": FAILED
+grow-sparse: exit(1)
+Execution of 'grow-sparse' complete.
+Timer: 111 ticks
+Thread: 0 idle ticks, 109 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 116 reads, 434 writes
+hd1:0: 210 reads, 0 writes
+Console: 1007 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-two-files FAILURE:
+
+run: write 250 bytes at offset 0 in "a" returned 0: FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-two-files:
+
+Copying tests/filesys/extended/grow-two-files into /tmp/rPZETPqvLi.dsk...
+Copying tests/filesys/extended/tar into /tmp/rPZETPqvLi.dsk...
+Writing command line to /tmp/HFnTBXn1_d.dsk...
+qemu -hda /tmp/HFnTBXn1_d.dsk -hdb tmp.dsk -hdc /tmp/rPZETPqvLi.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-two-files put tar run grow-two-files
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 212 sector (106 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-two-files' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-two-files':
+(grow-two-files) begin
+(grow-two-files) create "a"
+(grow-two-files) create "b"
+(grow-two-files) open "a"
+(grow-two-files) open "b"
+(grow-two-files) write "a" and "b" alternately
+(grow-two-files) write 250 bytes at offset 0 in "a" returned 0: FAILED
+grow-two-files: exit(1)
+Execution of 'grow-two-files' complete.
+Timer: 117 ticks
+Thread: 0 idle ticks, 113 kernel ticks, 4 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 146 reads, 442 writes
+hd1:0: 212 reads, 0 writes
+Console: 1092 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-tell FAILURE:
+
+run: write 37 bytes at offset 0 in "foobar" failed: FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-tell:
+
+Copying tests/filesys/extended/grow-tell into /tmp/REy4TuiLMJ.dsk...
+Copying tests/filesys/extended/tar into /tmp/REy4TuiLMJ.dsk...
+Writing command line to /tmp/OfzZICrZdF.dsk...
+qemu -hda /tmp/OfzZICrZdF.dsk -hdb tmp.dsk -hdc /tmp/REy4TuiLMJ.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-tell put tar run grow-tell
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 211 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-tell' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-tell':
+(grow-tell) begin
+(grow-tell) create "foobar"
+(grow-tell) open "foobar"
+(grow-tell) writing "foobar"
+(grow-tell) write 37 bytes at offset 0 in "foobar" failed: FAILED
+grow-tell: exit(1)
+Execution of 'grow-tell' complete.
+Timer: 115 ticks
+Thread: 0 idle ticks, 113 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 115 reads, 436 writes
+hd1:0: 211 reads, 0 writes
+Console: 980 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-file-size FAILURE:
+
+run: write 37 bytes at offset 0 in "testfile" failed: FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-file-size:
+
+Copying tests/filesys/extended/grow-file-size into /tmp/Z8C6B9Hny3.dsk...
+Copying tests/filesys/extended/tar into /tmp/Z8C6B9Hny3.dsk...
+Writing command line to /tmp/9gPtPhAlbS.dsk...
+qemu -hda /tmp/9gPtPhAlbS.dsk -hdb tmp.dsk -hdc /tmp/Z8C6B9Hny3.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-file-size put tar run grow-file-size
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 211 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-file-size' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-file-size':
+(grow-file-size) begin
+(grow-file-size) create "testfile"
+(grow-file-size) open "testfile"
+(grow-file-size) writing "testfile"
+(grow-file-size) write 37 bytes at offset 0 in "testfile" failed: FAILED
+grow-file-size: exit(1)
+Execution of 'grow-file-size' complete.
+Timer: 108 ticks
+Thread: 0 idle ticks, 106 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 115 reads, 436 writes
+hd1:0: 211 reads, 0 writes
+Console: 1043 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-dir-lg FAILURE:
+
+run: create "/x/file14": FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-dir-lg:
+
+Copying tests/filesys/extended/grow-dir-lg into /tmp/AJTVuKzT_D.dsk...
+Copying tests/filesys/extended/tar into /tmp/AJTVuKzT_D.dsk...
+Writing command line to /tmp/gjumfQoK1N.dsk...
+qemu -hda /tmp/gjumfQoK1N.dsk -hdb tmp.dsk -hdc /tmp/AJTVuKzT_D.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-dir-lg put tar run grow-dir-lg
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 210 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-dir-lg' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-dir-lg':
+(grow-dir-lg) begin
+(grow-dir-lg) mkdir /x
+(grow-dir-lg) creating and checking "/x/file0"
+(grow-dir-lg) creating and checking "/x/file1"
+(grow-dir-lg) creating and checking "/x/file2"
+(grow-dir-lg) creating and checking "/x/file3"
+(grow-dir-lg) creating and checking "/x/file4"
+(grow-dir-lg) creating and checking "/x/file5"
+(grow-dir-lg) creating and checking "/x/file6"
+(grow-dir-lg) creating and checking "/x/file7"
+(grow-dir-lg) creating and checking "/x/file8"
+(grow-dir-lg) creating and checking "/x/file9"
+(grow-dir-lg) creating and checking "/x/file10"
+(grow-dir-lg) creating and checking "/x/file11"
+(grow-dir-lg) creating and checking "/x/file12"
+(grow-dir-lg) creating and checking "/x/file13"
+(grow-dir-lg) creating and checking "/x/file14"
+(grow-dir-lg) create "/x/file14": FAILED
+grow-dir-lg: exit(1)
+Execution of 'grow-dir-lg' complete.
+Timer: 129 ticks
+Thread: 0 idle ticks, 108 kernel ticks, 22 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 872 reads, 519 writes
+hd1:0: 210 reads, 0 writes
+Console: 1620 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-root-sm FAILURE:
+
+run: create "file14": FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-root-sm:
+
+Copying tests/filesys/extended/grow-root-sm into /tmp/q7yF23UDO5.dsk...
+Copying tests/filesys/extended/tar into /tmp/q7yF23UDO5.dsk...
+Writing command line to /tmp/0o2I6BwdQn.dsk...
+qemu -hda /tmp/0o2I6BwdQn.dsk -hdb tmp.dsk -hdc /tmp/q7yF23UDO5.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-root-sm put tar run grow-root-sm
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 210 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-root-sm' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-root-sm':
+(grow-root-sm) begin
+(grow-root-sm) creating and checking "file0"
+(grow-root-sm) creating and checking "file1"
+(grow-root-sm) creating and checking "file2"
+(grow-root-sm) creating and checking "file3"
+(grow-root-sm) creating and checking "file4"
+(grow-root-sm) creating and checking "file5"
+(grow-root-sm) creating and checking "file6"
+(grow-root-sm) creating and checking "file7"
+(grow-root-sm) creating and checking "file8"
+(grow-root-sm) creating and checking "file9"
+(grow-root-sm) creating and checking "file10"
+(grow-root-sm) creating and checking "file11"
+(grow-root-sm) creating and checking "file12"
+(grow-root-sm) creating and checking "file13"
+(grow-root-sm) creating and checking "file14"
+(grow-root-sm) create "file14": FAILED
+grow-root-sm: exit(1)
+Execution of 'grow-root-sm' complete.
+Timer: 130 ticks
+Thread: 0 idle ticks, 110 kernel ticks, 20 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 872 reads, 519 writes
+hd1:0: 210 reads, 0 writes
+Console: 1572 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-root-lg FAILURE:
+
+run: create "file14": FAILED
+
+OUTPUT FROM tests/filesys/extended/grow-root-lg:
+
+Copying tests/filesys/extended/grow-root-lg into /tmp/Fud86vcz5J.dsk...
+Copying tests/filesys/extended/tar into /tmp/Fud86vcz5J.dsk...
+Writing command line to /tmp/xyXElNuW1v.dsk...
+qemu -hda /tmp/xyXElNuW1v.dsk -hdb tmp.dsk -hdc /tmp/Fud86vcz5J.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put grow-root-lg put tar run grow-root-lg
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 210 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-root-lg' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-root-lg':
+(grow-root-lg) begin
+(grow-root-lg) creating and checking "file0"
+(grow-root-lg) creating and checking "file1"
+(grow-root-lg) creating and checking "file2"
+(grow-root-lg) creating and checking "file3"
+(grow-root-lg) creating and checking "file4"
+(grow-root-lg) creating and checking "file5"
+(grow-root-lg) creating and checking "file6"
+(grow-root-lg) creating and checking "file7"
+(grow-root-lg) creating and checking "file8"
+(grow-root-lg) creating and checking "file9"
+(grow-root-lg) creating and checking "file10"
+(grow-root-lg) creating and checking "file11"
+(grow-root-lg) creating and checking "file12"
+(grow-root-lg) creating and checking "file13"
+(grow-root-lg) creating and checking "file14"
+(grow-root-lg) create "file14": FAILED
+grow-root-lg: exit(1)
+Execution of 'grow-root-lg' complete.
+Timer: 132 ticks
+Thread: 0 idle ticks, 110 kernel ticks, 22 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 872 reads, 519 writes
+hd1:0: 210 reads, 0 writes
+Console: 1572 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/syn-rw FAILURE:
+
+run: write 8 bytes at offset 0 in "logfile": FAILED
+
+OUTPUT FROM tests/filesys/extended/syn-rw:
+
+Copying tests/filesys/extended/syn-rw into /tmp/hzCTkXYvjN.dsk...
+Copying tests/filesys/extended/tar into /tmp/hzCTkXYvjN.dsk...
+Copying tests/filesys/extended/child-syn-rw into /tmp/hzCTkXYvjN.dsk...
+Writing command line to /tmp/sjUyLy9ZbV.dsk...
+qemu -hda /tmp/sjUyLy9ZbV.dsk -hdb tmp.dsk -hdc /tmp/hzCTkXYvjN.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put syn-rw put tar put child-syn-rw run syn-rw
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 323 sector (161 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'syn-rw' into the file system...
+Putting 'tar' into the file system...
+Putting 'child-syn-rw' into the file system...
+Executing 'syn-rw':
+(syn-rw) begin
+(syn-rw) create "logfile"
+(syn-rw) open "logfile"
+(syn-rw) exec child 1 of 4: "child-syn-rw 0"
+(syn-rw) exec child 2 of 4: "child-syn-rw 1"
+(syn-rw) exec child 3 of 4: "child-syn-rw 2"
+(syn-rw) exec child 4 of 4: "child-syn-rw 3"
+(syn-rw) write 8 bytes at offset 0 in "logfile": FAILED
+syn-rw: exit(1)
+Execution of 'syn-rw' complete.
+Timer: 215 ticks
+Thread: 0 idle ticks, 137 kernel ticks, 78 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 315 reads, 662 writes
+hd1:0: 323 reads, 0 writes
+Console: 1161 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-empty-name FAILURE:
+
+run: mkdir "" (must return false): FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-empty-name:
+
+Copying tests/filesys/extended/dir-empty-name into /tmp/WF0oAzcPug.dsk...
+Copying tests/filesys/extended/tar into /tmp/WF0oAzcPug.dsk...
+Writing command line to /tmp/MlloK5Yihu.dsk...
+qemu -hda /tmp/MlloK5Yihu.dsk -hdb tmp.dsk -hdc /tmp/WF0oAzcPug.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-empty-name put tar run dir-empty-name
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 209 sector (104 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-empty-name' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-empty-name':
+(dir-empty-name) begin
+(dir-empty-name) mkdir "" (must return false)
+(dir-empty-name) mkdir "" (must return false): FAILED
+dir-empty-name: exit(1)
+Execution of 'dir-empty-name' complete.
+Timer: 108 ticks
+Thread: 0 idle ticks, 107 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 87 reads, 428 writes
+hd1:0: 209 reads, 0 writes
+Console: 965 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-open FAILURE:
+
+run: open "xyzzy": FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-open:
+
+Copying tests/filesys/extended/dir-open into /tmp/pb0m4HdDM_.dsk...
+Copying tests/filesys/extended/tar into /tmp/pb0m4HdDM_.dsk...
+Writing command line to /tmp/p0QIyPVlhi.dsk...
+qemu -hda /tmp/p0QIyPVlhi.dsk -hdb tmp.dsk -hdc /tmp/pb0m4HdDM_.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-open put tar run dir-open
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 210 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-open' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-open':
+(dir-open) begin
+(dir-open) mkdir "xyzzy"
+(dir-open) open "xyzzy"
+(dir-open) open "xyzzy": FAILED
+dir-open: exit(1)
+Execution of 'dir-open' complete.
+Timer: 109 ticks
+Thread: 0 idle ticks, 108 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 104 reads, 430 writes
+hd1:0: 210 reads, 0 writes
+Console: 905 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-over-file FAILURE:
+
+run: create "abc" (must return false): FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-over-file:
+
+Copying tests/filesys/extended/dir-over-file into /tmp/4u22_k9CDv.dsk...
+Copying tests/filesys/extended/tar into /tmp/4u22_k9CDv.dsk...
+Writing command line to /tmp/LDofPFPfmX.dsk...
+qemu -hda /tmp/LDofPFPfmX.dsk -hdb tmp.dsk -hdc /tmp/4u22_k9CDv.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-over-file put tar run dir-over-file
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 209 sector (104 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-over-file' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-over-file':
+(dir-over-file) begin
+(dir-over-file) mkdir "abc"
+(dir-over-file) create "abc" (must return false)
+(dir-over-file) create "abc" (must return false): FAILED
+dir-over-file: exit(1)
+Execution of 'dir-over-file' complete.
+Timer: 113 ticks
+Thread: 0 idle ticks, 112 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 110 reads, 432 writes
+hd1:0: 209 reads, 0 writes
+Console: 993 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-under-file FAILURE:
+
+run: mkdir "abc" (must return false): FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-under-file:
+
+Copying tests/filesys/extended/dir-under-file into /tmp/Is903fx9O4.dsk...
+Copying tests/filesys/extended/tar into /tmp/Is903fx9O4.dsk...
+Writing command line to /tmp/nrWZ4_C5Zm.dsk...
+qemu -hda /tmp/nrWZ4_C5Zm.dsk -hdb tmp.dsk -hdc /tmp/Is903fx9O4.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-under-file put tar run dir-under-file
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 209 sector (104 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-under-file' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-under-file':
+(dir-under-file) begin
+(dir-under-file) create "abc"
+(dir-under-file) mkdir "abc" (must return false)
+(dir-under-file) mkdir "abc" (must return false): FAILED
+dir-under-file: exit(1)
+Execution of 'dir-under-file' complete.
+Timer: 112 ticks
+Thread: 0 idle ticks, 110 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 110 reads, 432 writes
+hd1:0: 209 reads, 0 writes
+Console: 1002 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-rm-cwd FAILURE:
+
+run: open "/": FAILED
+
+OUTPUT FROM tests/filesys/extended/dir-rm-cwd:
+
+Copying tests/filesys/extended/dir-rm-cwd into /tmp/MN2RYeA9mm.dsk...
+Copying tests/filesys/extended/tar into /tmp/MN2RYeA9mm.dsk...
+Writing command line to /tmp/kxwlQb4G05.dsk...
+qemu -hda /tmp/kxwlQb4G05.dsk -hdb tmp.dsk -hdc /tmp/MN2RYeA9mm.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-rm-cwd put tar run dir-rm-cwd
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 214 sector (107 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-rm-cwd' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-rm-cwd':
+(dir-rm-cwd) begin
+(dir-rm-cwd) open "/"
+(dir-rm-cwd) open "/": FAILED
+dir-rm-cwd: exit(1)
+Execution of 'dir-rm-cwd' complete.
+Timer: 115 ticks
+Thread: 0 idle ticks, 114 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 107 reads, 438 writes
+hd1:0: 214 reads, 0 writes
+Console: 890 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-empty-name-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-empty-name failed.
+
+OUTPUT FROM tests/filesys/extended/dir-empty-name-persistence:
+
+Writing command line to /tmp/fIWDl7GPKT.dsk...
+qemu -hda /tmp/fIWDl7GPKT.dsk -hdb tmp.dsk -hdc /tmp/WnS29_M2__.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 87 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-empty-name.tar out of /tmp/WnS29_M2__.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-mk-tree-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-mk-tree failed.
+
+OUTPUT FROM tests/filesys/extended/dir-mk-tree-persistence:
+
+Writing command line to /tmp/R2bauXvv0n.dsk...
+qemu -hda /tmp/R2bauXvv0n.dsk -hdb tmp.dsk -hdc /tmp/BN0HyrCIkH.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+fs.tar: create failed
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Kernel PANIC at ../../filesys/fsutil.c:167 in fsutil_get(): fs.tar: open failed
+Call stack: 0xc01071d9 0xc010c5b6 0xc01006d0.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 0 writes
+Console: 1030 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-mk-tree.tar out of /tmp/BN0HyrCIkH.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-mkdir-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-mkdir failed.
+
+OUTPUT FROM tests/filesys/extended/dir-mkdir-persistence:
+
+Writing command line to /tmp/R5UZUdCXK4.dsk...
+qemu -hda /tmp/R5UZUdCXK4.dsk -hdb tmp.dsk -hdc /tmp/PTvclMjHYj.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 51 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-mkdir.tar out of /tmp/PTvclMjHYj.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-open-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-open failed.
+
+OUTPUT FROM tests/filesys/extended/dir-open-persistence:
+
+Writing command line to /tmp/93URcgnyxH.dsk...
+qemu -hda /tmp/93URcgnyxH.dsk -hdb tmp.dsk -hdc /tmp/2r2uycl_QD.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 54 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 87 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-open.tar out of /tmp/2r2uycl_QD.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-over-file-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-over-file failed.
+
+OUTPUT FROM tests/filesys/extended/dir-over-file-persistence:
+
+Writing command line to /tmp/PXUbqoR9TO.dsk...
+qemu -hda /tmp/PXUbqoR9TO.dsk -hdb tmp.dsk -hdc /tmp/HT6UbK4mNF.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-over-file.tar out of /tmp/HT6UbK4mNF.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-rm-cwd-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-rm-cwd failed.
+
+OUTPUT FROM tests/filesys/extended/dir-rm-cwd-persistence:
+
+Writing command line to /tmp/2pEmiUrn0E.dsk...
+qemu -hda /tmp/2pEmiUrn0E.dsk -hdb tmp.dsk -hdc /tmp/xmbKavc3MM.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 87 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-rm-cwd.tar out of /tmp/xmbKavc3MM.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-rm-parent-persistence FAILURE:
+
+Error extracting file system:
+/: open failed
+error writing archive
+
+OUTPUT FROM tests/filesys/extended/dir-rm-parent-persistence:
+
+Writing command line to /tmp/iCK6Wd1j1y.dsk...
+qemu -hda /tmp/iCK6Wd1j1y.dsk -hdb tmp.dsk -hdc /tmp/QGGbgCqedj.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 87 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-rm-parent.tar out of /tmp/QGGbgCqedj.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-rm-root-persistence FAILURE:
+
+Error extracting file system:
+/: open failed
+error writing archive
+
+OUTPUT FROM tests/filesys/extended/dir-rm-root-persistence:
+
+Writing command line to /tmp/VvRKKjmKgc.dsk...
+qemu -hda /tmp/VvRKKjmKgc.dsk -hdb tmp.dsk -hdc /tmp/xtitK9kkJh.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  208,896,000 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 55 ticks
+Thread: 0 idle ticks, 54 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-rm-root.tar out of /tmp/xtitK9kkJh.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-rm-tree-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-rm-tree failed.
+
+OUTPUT FROM tests/filesys/extended/dir-rm-tree-persistence:
+
+Writing command line to /tmp/HFQF6QEd3k.dsk...
+qemu -hda /tmp/HFQF6QEd3k.dsk -hdb tmp.dsk -hdc /tmp/BzJ8Q7CUcM.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+fs.tar: create failed
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Kernel PANIC at ../../filesys/fsutil.c:167 in fsutil_get(): fs.tar: open failed
+Call stack: 0xc01071d9 0xc010c5b6 0xc01006d0.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 52 ticks
+Thread: 0 idle ticks, 51 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 0 writes
+Console: 1030 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-rm-tree.tar out of /tmp/BzJ8Q7CUcM.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-rmdir-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-rmdir failed.
+
+OUTPUT FROM tests/filesys/extended/dir-rmdir-persistence:
+
+Writing command line to /tmp/BhLI_1FUwL.dsk...
+qemu -hda /tmp/BhLI_1FUwL.dsk -hdb tmp.dsk -hdc /tmp/NXQ07O4WRP.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 87 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-rmdir.tar out of /tmp/NXQ07O4WRP.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-under-file-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-under-file failed.
+
+OUTPUT FROM tests/filesys/extended/dir-under-file-persistence:
+
+Writing command line to /tmp/49MPMNY254.dsk...
+qemu -hda /tmp/49MPMNY254.dsk -hdb tmp.dsk -hdc /tmp/05iraJLnka.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-under-file.tar out of /tmp/05iraJLnka.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/dir-vine-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/dir-vine failed.
+
+OUTPUT FROM tests/filesys/extended/dir-vine-persistence:
+
+Writing command line to /tmp/hZY8aUlTJ2.dsk...
+qemu -hda /tmp/hZY8aUlTJ2.dsk -hdb tmp.dsk -hdc /tmp/N_ipmIaFjC.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 54 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 87 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/dir-vine.tar out of /tmp/N_ipmIaFjC.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-create-persistence FAILURE:
+
+Error extracting file system:
+/: open failed
+error writing archive
+
+OUTPUT FROM tests/filesys/extended/grow-create-persistence:
+
+Writing command line to /tmp/yFJoKEo90o.dsk...
+qemu -hda /tmp/yFJoKEo90o.dsk -hdb tmp.dsk -hdc /tmp/cpxD7PU652.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-create.tar out of /tmp/cpxD7PU652.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-dir-lg-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-dir-lg failed.
+
+OUTPUT FROM tests/filesys/extended/grow-dir-lg-persistence:
+
+Writing command line to /tmp/mBo5dK70W2.dsk...
+qemu -hda /tmp/mBo5dK70W2.dsk -hdb tmp.dsk -hdc /tmp/BwNt_l2NYt.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+fs.tar: create failed
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Kernel PANIC at ../../filesys/fsutil.c:167 in fsutil_get(): fs.tar: open failed
+Call stack: 0xc01071d9 0xc010c5b6 0xc01006d0.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 53 ticks
+Thread: 0 idle ticks, 51 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 0 writes
+Console: 1030 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-dir-lg.tar out of /tmp/BwNt_l2NYt.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-file-size-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-file-size failed.
+
+OUTPUT FROM tests/filesys/extended/grow-file-size-persistence:
+
+Writing command line to /tmp/egti25i80e.dsk...
+qemu -hda /tmp/egti25i80e.dsk -hdb tmp.dsk -hdc /tmp/otwae1WsrF.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 51 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-file-size.tar out of /tmp/otwae1WsrF.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-root-lg-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-root-lg failed.
+
+OUTPUT FROM tests/filesys/extended/grow-root-lg-persistence:
+
+Writing command line to /tmp/IGl0fbaIpx.dsk...
+qemu -hda /tmp/IGl0fbaIpx.dsk -hdb tmp.dsk -hdc /tmp/abHdYCQLb6.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+fs.tar: create failed
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Kernel PANIC at ../../filesys/fsutil.c:167 in fsutil_get(): fs.tar: open failed
+Call stack: 0xc01071d9 0xc010c5b6 0xc01006d0.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 52 ticks
+Thread: 0 idle ticks, 51 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 0 writes
+Console: 1030 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-root-lg.tar out of /tmp/abHdYCQLb6.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-root-sm-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-root-sm failed.
+
+OUTPUT FROM tests/filesys/extended/grow-root-sm-persistence:
+
+Writing command line to /tmp/Tq7oJoi6uy.dsk...
+qemu -hda /tmp/Tq7oJoi6uy.dsk -hdb tmp.dsk -hdc /tmp/joALgM428c.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  157,081,600 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+fs.tar: create failed
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Kernel PANIC at ../../filesys/fsutil.c:167 in fsutil_get(): fs.tar: open failed
+Call stack: 0xc01071d9 0xc010c5b6 0xc01006d0.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 54 ticks
+Thread: 0 idle ticks, 53 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 0 writes
+Console: 1030 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-root-sm.tar out of /tmp/joALgM428c.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-seq-lg-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-seq-lg failed.
+
+OUTPUT FROM tests/filesys/extended/grow-seq-lg-persistence:
+
+Writing command line to /tmp/1fJeIkQ08y.dsk...
+qemu -hda /tmp/1fJeIkQ08y.dsk -hdb tmp.dsk -hdc /tmp/i0xICxdaCE.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  157,081,600 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 55 ticks
+Thread: 0 idle ticks, 53 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-seq-lg.tar out of /tmp/i0xICxdaCE.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-seq-sm-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-seq-sm failed.
+
+OUTPUT FROM tests/filesys/extended/grow-seq-sm-persistence:
+
+Writing command line to /tmp/t4J9Ja_i5S.dsk...
+qemu -hda /tmp/t4J9Ja_i5S.dsk -hdb tmp.dsk -hdc /tmp/jMTAy87k24.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  104,755,200 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 52 ticks
+Thread: 0 idle ticks, 50 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-seq-sm.tar out of /tmp/jMTAy87k24.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-sparse-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-sparse failed.
+
+OUTPUT FROM tests/filesys/extended/grow-sparse-persistence:
+
+Writing command line to /tmp/743VRWduMn.dsk...
+qemu -hda /tmp/743VRWduMn.dsk -hdb tmp.dsk -hdc /tmp/aMaN31XLYX.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 54 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-sparse.tar out of /tmp/aMaN31XLYX.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-tell-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-tell failed.
+
+OUTPUT FROM tests/filesys/extended/grow-tell-persistence:
+
+Writing command line to /tmp/tTzB5FdP6z.dsk...
+qemu -hda /tmp/tTzB5FdP6z.dsk -hdb tmp.dsk -hdc /tmp/CJf3IX2_Ij.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 54 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-tell.tar out of /tmp/CJf3IX2_Ij.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/grow-two-files-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/grow-two-files failed.
+
+OUTPUT FROM tests/filesys/extended/grow-two-files-persistence:
+
+Writing command line to /tmp/8xjLclaFE2.dsk...
+qemu -hda /tmp/8xjLclaFE2.dsk -hdb tmp.dsk -hdc /tmp/IgWH3FQLYv.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 53 ticks
+Thread: 0 idle ticks, 51 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 93 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/grow-two-files.tar out of /tmp/IgWH3FQLYv.dsk...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/filesys/extended/syn-rw-persistence FAILURE:
+
+Prerequisite test tests/filesys/extended/syn-rw failed.
+
+OUTPUT FROM tests/filesys/extended/syn-rw-persistence:
+
+Writing command line to /tmp/tb58xeacSG.dsk...
+qemu -hda /tmp/tb58xeacSG.dsk -hdb tmp.dsk -hdc /tmp/2kQh3CdtYo.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q run 'tar fs.tar /' get fs.tar
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 2,048 sector (1024 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Boot complete.
+Executing 'tar fs.tar /':
+/: open failed
+error writing archive
+tar: exit(1)
+Execution of 'tar fs.tar /' complete.
+Getting 'fs.tar' from the file system...
+Timer: 54 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 93 reads, 4 writes
+hd1:0: 0 reads, 1 writes
+Console: 765 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+Copying tests/filesys/extended/syn-rw.tar out of /tmp/2kQh3CdtYo.dsk...

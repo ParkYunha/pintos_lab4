@@ -1,0 +1,32 @@
+Copying tests/filesys/extended/dir-over-file into /tmp/4u22_k9CDv.dsk...
+Copying tests/filesys/extended/tar into /tmp/4u22_k9CDv.dsk...
+Writing command line to /tmp/LDofPFPfmX.dsk...
+qemu -hda /tmp/LDofPFPfmX.dsk -hdb tmp.dsk -hdc /tmp/4u22_k9CDv.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-over-file put tar run dir-over-file
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 209 sector (104 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-over-file' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-over-file':
+(dir-over-file) begin
+(dir-over-file) mkdir "abc"
+(dir-over-file) create "abc" (must return false)
+(dir-over-file) create "abc" (must return false): FAILED
+dir-over-file: exit(1)
+Execution of 'dir-over-file' complete.
+Timer: 113 ticks
+Thread: 0 idle ticks, 112 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 110 reads, 432 writes
+hd1:0: 209 reads, 0 writes
+Console: 993 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

@@ -1,0 +1,31 @@
+Copying tests/filesys/extended/dir-rm-cwd into /tmp/MN2RYeA9mm.dsk...
+Copying tests/filesys/extended/tar into /tmp/MN2RYeA9mm.dsk...
+Writing command line to /tmp/kxwlQb4G05.dsk...
+qemu -hda /tmp/kxwlQb4G05.dsk -hdb tmp.dsk -hdc /tmp/MN2RYeA9mm.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-rm-cwd put tar run dir-rm-cwd
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 214 sector (107 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-rm-cwd' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-rm-cwd':
+(dir-rm-cwd) begin
+(dir-rm-cwd) open "/"
+(dir-rm-cwd) open "/": FAILED
+dir-rm-cwd: exit(1)
+Execution of 'dir-rm-cwd' complete.
+Timer: 115 ticks
+Thread: 0 idle ticks, 114 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 107 reads, 438 writes
+hd1:0: 214 reads, 0 writes
+Console: 890 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

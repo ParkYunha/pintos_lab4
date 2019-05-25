@@ -1,0 +1,31 @@
+Copying tests/filesys/extended/dir-rm-tree into /tmp/DdHUnXcVjN.dsk...
+Copying tests/filesys/extended/tar into /tmp/DdHUnXcVjN.dsk...
+Writing command line to /tmp/A6c6vW1jo1.dsk...
+qemu -hda /tmp/A6c6vW1jo1.dsk -hdb tmp.dsk -hdc /tmp/DdHUnXcVjN.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put dir-rm-tree put tar run dir-rm-tree
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  209,510,400 loops/s.
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 217 sector (108 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'dir-rm-tree' into the file system...
+Putting 'tar' into the file system...
+Executing 'dir-rm-tree':
+(dir-rm-tree) begin
+(dir-rm-tree) creating /0/0/0/0 through /3/2/2/3...
+(dir-rm-tree) create "/0/1/0/2": FAILED
+dir-rm-tree: exit(1)
+Execution of 'dir-rm-tree' complete.
+Timer: 122 ticks
+Thread: 0 idle ticks, 109 kernel ticks, 13 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 539 reads, 504 writes
+hd1:0: 217 reads, 0 writes
+Console: 938 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
