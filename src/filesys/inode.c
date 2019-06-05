@@ -19,6 +19,9 @@ struct inode_disk
     off_t length;                       /* File size in bytes. */
     unsigned magic;                     /* Magic number. */
     uint32_t unused[125];               /* Not used. */
+    size_t alloc_sectors;               /* Number of the allocated sectors. */
+    bool is_dir;                        /* True if it's a directory, false if not. */
+    disk_sector_t parent;               /* which sector is this file(sector) (continued) from. */
   };
 
 /* Returns the number of sectors to allocate for an inode SIZE
@@ -38,6 +41,11 @@ struct inode
     bool removed;                       /* True if deleted, false otherwise. */
     int deny_write_cnt;                 /* 0: writes ok, >0: deny writes. */
     struct inode_disk data;             /* Inode content. */
+    
+    uint32_t direct_index;              /* Direct sector. */
+    uint32_t indirect_index;            /* Indirect sector. */
+    uint32_t double_indirect_index;     /* Double indirect sector. */
+    disk_sector_t sectors[14];              /* Total sectors. */
   };
 
 /* Returns the disk sector that contains byte offset POS within
@@ -71,7 +79,7 @@ inode_init (void)
    Returns true if successful.
    Returns false if memory or disk allocation fails. */
 bool
-inode_create (disk_sector_t sector, off_t length)
+inode_create (disk_sector_t sector, off_t length, bool is_dir)
 {
   struct inode_disk *disk_inode = NULL;
   bool success = false;
@@ -89,6 +97,8 @@ inode_create (disk_sector_t sector, off_t length)
       size_t sectors = bytes_to_sectors (length);
       disk_inode->length = length;
       disk_inode->magic = INODE_MAGIC;
+      disk_inode->is_dir = is_dir;
+      disk_inode->parent = ROOT_DIR_SECTOR;
       if (free_map_allocate (sectors, &disk_inode->start))
         {
           // disk_write (filesys_disk, sector, disk_inode);
@@ -360,3 +370,27 @@ inode_length (const struct inode *inode)
 {
   return inode->data.length;
 }
+
+// /* Allocate memory to inode_disk. */
+// void
+// inode_indexed_allocate(struct inode_disk *disk_inode)
+// {
+//   struct inode inode;
+  
+
+
+// }
+
+// /* Free all the inode_disk. */
+// void
+// inode_indexed_free(struct inode *inode)
+// {
+
+// }
+
+// /* Return  */
+// disk_sector_t
+// inode_index_to_sector()
+// {
+
+// }

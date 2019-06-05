@@ -12,7 +12,7 @@
 
 struct list buffer_cache_list;
 struct disk *filesys_disk;
-struct bitmap *cache_map; //FIXME: we need it?
+// struct bitmap *cache_map; //FIXME: we need it?
 struct semaphore cache_sema;
 
 void cache_init()
@@ -194,6 +194,7 @@ void cache_periodic_rewrite()
     timer_sleep(5 * TIMER_FREQ);
     cache_rewrite_disk();
   }
+  printf("this works!\n");
 }
 
 /* Write back all the cached data to disk. */
