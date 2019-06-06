@@ -28,9 +28,9 @@ struct inode_disk
     bool is_dir;                        /* True if it's a directory, false if not. */
     disk_sector_t parent;               /* which sector is this file(sector) (continued) from. */
 
-    uint32_t direct_index[MAX_DIRECT_BLOCKS * 8];         /* Direct blocks. */      
-    uint32_t indirect_index;            /* Indirect block. */
-    uint32_t double_indirect_index;     /* Double indirect block. */
+    disk_sector_t direct_index[MAX_DIRECT_BLOCKS * 8];         /* Direct blocks. */      
+    disk_sector_t indirect_index;            /* Indirect block. */
+    disk_sector_t double_indirect_index;     /* Double indirect block. */
     // disk_sector_t sectors[14];          /* Total sectors. */
   };
 
@@ -117,7 +117,7 @@ inode_create (disk_sector_t sector, off_t length, bool is_dir)
   ASSERT (sizeof *disk_inode == DISK_SECTOR_SIZE);
   
 
-  disk_inode = calloc (1, sizeof *disk_inode);
+  disk_inode = calloc (1, sizeof(struct inode_disk));
   if (disk_inode != NULL)
     {
       size_t sectors = bytes_to_sectors (length);
@@ -189,6 +189,7 @@ inode_open (disk_sector_t sector)
   inode->deny_write_cnt = 0;
   inode->removed = false;
   // disk_read (filesys_disk, inode->sector, &inode->data);
+  // printf("inode_open(%d)\n", sector);
   cache_read(inode->sector, &inode->data);
 
   return inode;
@@ -445,7 +446,9 @@ inode_indexed_allocate(struct inode_disk *disk_inode)
 bool
 inode_grow(struct inode_disk *disk_inode, off_t length)
 {
-  char zeros[DISK_SECTOR_SIZE];
+  static char zeros[DISK_SECTOR_SIZE] = {0,};
+
+  // printf("inode_disk(%d)\n", length); //debug
 
   if(length < 0) {
     return false;
@@ -470,6 +473,9 @@ inode_grow(struct inode_disk *disk_inode, off_t length)
     return true;
   }
 
+  // for(i = 0 ; i < len ; ++i)
+  //   printf("inode_grow - direct(%d)\n", disk_inode->direct_index[i]);
+
   // (2) single indirect sector
   len = MIN(used_sectors, 16 * 8);     //FIXME: 
   if(! inode_grow_indirect (& disk_inode->indirect_index, len, 1))
@@ -493,9 +499,10 @@ inode_grow(struct inode_disk *disk_inode, off_t length)
 bool
 inode_grow_indirect(disk_sector_t* p_entry, size_t num_sectors, int level)
 {
-  char zeros[DISK_SECTOR_SIZE];
+  
+  static char zeros[DISK_SECTOR_SIZE] = {0,};
 
-    if (level == 0) {
+  if (level == 0) {
     // base case : allocate a single sector if necessary and put it into the block
     if (*p_entry == 0) {
       if(! free_map_allocate (1, p_entry))
@@ -505,13 +512,14 @@ inode_grow_indirect(disk_sector_t* p_entry, size_t num_sectors, int level)
     return true;
   }
 
-  disk_sector_t indirect_blocks[128]; //FIXME: 128 right?
+  disk_sector_t indirect_blocks[128] = {0,}; //FIXME: 128 right?
   if(*p_entry == 0) {
     // not yet allocated: allocate it, and fill with zero
     free_map_allocate (1, p_entry);
     cache_write (*p_entry, zeros);
   }
   cache_read(*p_entry, &indirect_blocks);
+  // printf("inode_grow_indirect %d %d %d\n", *p_entry, num_sectors, level); //debug
 
   size_t unit = (level == 1 ? 1 : 128);
   size_t len = DIV_ROUND_UP (num_sectors, unit);
@@ -519,9 +527,14 @@ inode_grow_indirect(disk_sector_t* p_entry, size_t num_sectors, int level)
 
   for (i = 0; i < len; ++ i) {
     size_t subsize = MIN(num_sectors, unit);
+    indirect_blocks[i] = 0;
     if(! inode_grow_indirect (& indirect_blocks[i], subsize, level - 1)) //recursive
       return false;
     num_sectors -= subsize;
+  }
+
+  for(i = 0; i < len; ++i) {
+    // printf("indirect created(%d)\n", indirect_blocks[i]); //debug
   }
 
   ASSERT (num_sectors == 0);
@@ -610,34 +623,49 @@ inode_index_to_sector(const struct inode_disk *idisk, off_t index)
 {
   off_t index_base = 0, index_limit = 0;   // base, limit for sector index
   disk_sector_t ret;
+  int i;
 
   // (1) direct blocks
   // printf("direct\n"); //debug
   index_limit += DIRECT_BLOCKS_COUNT * 1;
   if (index < index_limit) {
+    // printf(" **** index: %d, limit: %d, ret: %d \n", index, index_limit, idisk->direct_index[index]); //debug
     return idisk->direct_index[index];
   }
+  //else: need more space after direct blocks -> indirect blocks
   index_base = index_limit;
 
   // (2) a single indirect block
-  index_limit += 1 * INDIRECT_PTR_PER_BLOCK;
+  index_limit += INDIRECT_PTR_PER_BLOCK;
   if (index < index_limit) {
-    // printf("**** single indirect\n"); //debug
+    // printf(" **** single indirect\n"); //debug
     struct inode_indirect_block_sector *indirect_idisk;
+    // for(i = 0; i < INDIRECT_PTR_PER_BLOCK; ++i){
+    //   indirect_idisk->blocks[i] = -1;
+    // }
+
     indirect_idisk = calloc(1, sizeof(struct inode_indirect_block_sector));
     cache_read (idisk->indirect_index, indirect_idisk);
+    // printf("--- cache.. indirect index: %d\n", idisk->indirect_index); //debug
+
+    // printf("---ret---\n");
+    // for(i=0; i<INDIRECT_PTR_PER_BLOCK; ++i){
+    //   printf(indirect_idisk->blocks[i]);
+    // }
 
     ret = indirect_idisk->blocks[ index - index_base ];
     free(indirect_idisk);
+    // printf(" **** ret: %d, index: %d, base: %d \n", ret, index, index_base); //debug
 
     return ret;
   }
+  //else: need more space -> doubly indirect block
   index_base = index_limit;
 
   // (3) a single doubly indirect block
   index_limit += 1 * INDIRECT_PTR_PER_BLOCK * INDIRECT_PTR_PER_BLOCK;
   if (index < index_limit) {
-    // printf("**** double-indirect\n"); //debug
+    // printf(" **** double-indirect\n"); //debug
     // first and second level block index, respecitvely
     off_t index_first =  (index - index_base) / INDIRECT_PTR_PER_BLOCK;
     off_t index_second = (index - index_base) % INDIRECT_PTR_PER_BLOCK;
