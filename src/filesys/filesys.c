@@ -115,38 +115,7 @@ filesys_remove (const char *name)
 
   bool success = dir != NULL && dir_remove (dir, file_name);
   //dir_close (dir);
-  /*
-  bool success = false;
-  struct inode *inode;
-  if(file_name != NULL)
-  {
-    if(dir_lookup(dir, file_name, &inode))
-    {
-      bool inode_dir;
-      struct inode_disk *disk_inode = NULL;
-      disk_inode = calloc(1, sizeof *disk_inode);
-      if(disk_inode == NULL || inode == NULL)
-        inode_dir = false;
-      else
-        {
-          cache_read(inode, disk_inode); //?
-          if (disk_inode->is_dir == true)
-            inode_dir = true;
-          else
-            inode_dir = false;
-          free(disk_inode);
-        }
-      if(inode_dir)
-      {
-        struct dir *remove_dir = dir_open(inode);
-        if(!dir_readdir(remove_dir, file_name))
-          success = dir_remove(dir, file_name);
-      }
-      else
-        success = dir_remove(dir, file_name);
-    }
-  }
-*/
+
   dir_close(dir);
   palloc_free_page(name_);
   palloc_free_page(file_name);
@@ -203,13 +172,14 @@ path_to_dir(char *path_name, char *file_name)
         }
     }
 
-    /*this inode dir?*/
+
     struct inode *inode;
 
     while(tok != NULL && ntok != NULL)
     {
       if(dir_lookup(dir, tok, &inode))
       {
+        /* inode is dir? or not?*/
         bool inode_dir;
 
         struct inode_disk *disk_inode = NULL;
@@ -225,14 +195,14 @@ path_to_dir(char *path_name, char *file_name)
               inode_dir = false;
             free(disk_inode);
           }
-
+          /*if inode is dir*/
         if(inode_dir)
         {
           dir = dir_open(inode);
           tok = ntok;
           ntok = strtok_r(NULL, "/", &ptr);
         }
-        else
+        else // or not
         {
           dir_close(dir);
           return NULL;
