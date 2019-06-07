@@ -1,12 +1,38 @@
-#ifndef FILESYS_INODE_H
-#define FILESYS_INODE_H
-
 #include <stdbool.h>
 #include <stddef.h>
 #include "filesys/off_t.h"
 #include "devices/disk.h"
 
+#ifndef FILESYS_INODE_H
+#define FILESYS_INODE_H
+
+
+/* Identifies an inode. */
+#define INODE_MAGIC 0x494e4f44
+// added
+#define MAX_DIRECT_BLOCKS 12
+#define NUM_DIRECT_SECTORS 96 //12 * 8
+#define NUM_INDIRECT_SECTORS 128 //(8+8)*8
+
+/* On-disk inode.
+   Must be exactly DISK_SECTOR_SIZE = 512 bytes long. */
+struct inode_disk
+  {
+    // disk_sector_t start;             /* First data sector. */ //no use for now
+    off_t length;                       /* File size in bytes. */
+    unsigned magic;                     /* Magic number. */
+    uint32_t unused[26];                /* Not used. -> to fit the size of inode_disk = 512 bytes */
+    //added
+    bool is_dir;                        /* True if it's a directory, false if not. */
+    disk_sector_t parent;               /* which sector is this file(sector) (continued) from. */
+
+    disk_sector_t direct_index[MAX_DIRECT_BLOCKS * 8];    /* Direct blocks (sectors * 8). */
+    disk_sector_t indirect_index;                         /* Indirect block. */
+    disk_sector_t double_indirect_index;                  /* Double indirect block. */
+  };
+
 struct bitmap;
+
 
 void inode_init (void);
 bool inode_create (disk_sector_t, off_t, bool);

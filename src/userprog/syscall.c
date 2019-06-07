@@ -6,6 +6,8 @@
 #include "threads/vaddr.h"
 #include "userprog/pagedir.h"
 #include "filesys/off_t.h"  /* new */
+#include "filesys/inode.h"
+#include "filesys/directory.h"
 
 static void syscall_handler (struct intr_frame *);
 void userp_exit (int status);
@@ -57,18 +59,18 @@ void check_valid_pointer(const void *vaddr)
 }
 
 void
-syscall_init (void) 
+syscall_init (void)
 {
   intr_register_int (0x30, 3, INTR_ON, syscall_handler, "syscall");
 }
 
 static void
-syscall_handler (struct intr_frame *f) 
+syscall_handler (struct intr_frame *f)
 {
-  // ASSERT(f!= NULL); 
+  // ASSERT(f!= NULL);
   // ASSERT(f->esp != NULL);
   // ASSERT(pagedir_get_page(thread_current()->pagedir, f->esp) != NULL);
-  
+
   //sc-bad-sp
   check_valid_pointer(f->esp);
   if(get_user((uint8_t *)f->esp) == -1)
@@ -83,7 +85,7 @@ syscall_handler (struct intr_frame *f)
   {
     userp_exit(-1);
   }
-  
+
 
   int sys_num  = *(uint32_t *)(f->esp);
 
@@ -109,7 +111,7 @@ syscall_handler (struct intr_frame *f)
       int status = (int)*(uint32_t *)((f->esp) + 4);
 
       userp_exit(status);
-      break;  
+      break;
     }
 
     //syscall1 (SYS_EXEC, file);
@@ -117,7 +119,7 @@ syscall_handler (struct intr_frame *f)
     {
       check_valid_pointer((f->esp) + 4); //file = first
       f->eax = process_execute(*(const char **)(f->esp+4));
-      //process_execute(*(char **)((f->esp) + 4)); 
+      //process_execute(*(char **)((f->esp) + 4));
       break;
     }
 
@@ -136,13 +138,13 @@ syscall_handler (struct intr_frame *f)
       if(first == NULL)
       {
         userp_exit(-1);
-      }      
+      }
       check_valid_pointer((f->esp) + 4); //file = first
       check_valid_pointer((f->esp) + 8); //initial_size = second
-      check_valid_pointer(second); //also a pointer 
+      check_valid_pointer(second); //also a pointer
 
       sema_down(&file_sema);
-      f->eax = filesys_create((const char *)first, (int32_t)(second));
+      f->eax = filesys_create((const char *)first, (int32_t)(second), false);
       sema_up(&file_sema);
       break;
     }
@@ -163,7 +165,7 @@ syscall_handler (struct intr_frame *f)
 
     //syscall1 (SYS_OPEN, file);
     case SYS_OPEN: //6
-    { 
+    {
       if(first == NULL)
       {
         userp_exit(-1);
@@ -193,7 +195,7 @@ syscall_handler (struct intr_frame *f)
           file_deny_write(fp);
         }
         sema_up(&file_sema);
-            
+
         for(i = 3; i < 128; ++i)
         {
           if(thread_current()->f_d[i] == NULL)
@@ -205,7 +207,7 @@ syscall_handler (struct intr_frame *f)
           }
         }
       }
-      
+
       break;  //end open
     }
 
@@ -228,7 +230,7 @@ syscall_handler (struct intr_frame *f)
     }
 
     //syscall3 (SYS_READ, fd, buffer, size);
-    case SYS_READ: //8 
+    case SYS_READ: //8
     {
       check_valid_pointer((f->esp) + 4); //fd = first
       check_valid_pointer((f->esp) + 8); //buffer = second
@@ -352,7 +354,7 @@ syscall_handler (struct intr_frame *f)
       sema_down(&file_sema);
       file_tell(thread_current()->f_d[fd]);
       sema_up(&file_sema);
-      break; 
+      break;
     }
 
     //syscall1 (SYS_CLOSE, fd);
@@ -364,7 +366,7 @@ syscall_handler (struct intr_frame *f)
         userp_exit(-1);
       }
       check_valid_pointer((f->esp) + 4); //fd = first
-      
+
       sema_down(&file_sema);
       file_allow_write(thread_current()->f_d[fd]);
       file_close(thread_current()->f_d[fd]);
@@ -374,7 +376,158 @@ syscall_handler (struct intr_frame *f)
       thread_current()->f_d[fd] = NULL;  //file closed -> make it NULL
       break;
     }
+
+    case SYS_CHDIR:
+    {
+        check_valid_pointer((f->esp) + 4);
+        bool success = false;
+        char *name_ = palloc_get_page(0);
+        char *file_name = palloc_get_page(0);
+
+        strlcpy(name_, (char **)(f->esp + 4), PGSIZE);
+        if (name_ == NULL || file_name == NULL)
+        {
+          success = false;
+        }
+          struct dir *dir = path_to_dir(name_, file_name);
+          struct inode *inode;
+          struct thread *cur_t = thread_current();
+          if(dir == NULL || strlen(file_name) == 0)
+          {
+            dir_close(cur_t->dir);
+            cur_t->dir = dir_open(inode);
+            success = true;
+          }
+          else
+          {
+            if(dir_lookup(dir, file_name, &inode))
+            {
+              dir_close(cur_t->dir);
+              cur_t->dir = dir_open(inode);
+              success = true;
+            }
+          }
+
+
+        dir_close(dir);
+        palloc_free_page(name_);
+        palloc_free_page(file_name);
+
+        f->eax = success;
+
+        break;
+    }
+    case SYS_MKDIR:
+    {
+      check_valid_pointer((f->esp) + 4);
+      /*
+      disk_sector_t inode_sector = 0;
+      struct inode *inode;
+
+      char *name_ = palloc_get_page(0);
+      char *file_name = palloc_get_page(0);
+      strlcpy(name_, (char **)(f->esp + 4) , PGSIZE);
+
+      struct dir *dir = path_to_dir(name_, file_name);
+      bool success = (dir != NULL
+                  &&!dir_lookup(dir, file_name, &inode)
+                  && free_map_allocate(1, &inode_sector)
+                  && dir_create (inode_sector, 16)
+                  && dir_add (dir, file_name, inode_sector));
+
+      if (success == false)
+      {
+        if(inode_sector != 0)
+          free_map_release(inode_sector, 1);
+      }
+      else
+      {
+        if(dir_lookup(dir, file_name, &inode))
+        {
+          struct dir *ch_dir = dir_open(inode);
+          dir_add(ch_dir, ".", inode_get_inumber(inode));
+          dir_add(ch_dir, "..", inode_get_inumber(dir_get_inode(dir)));
+          dir_close(ch_dir);
+        }
+      }
+
+      dir_close(dir);
+      palloc_free_page(name_);
+      palloc_free_page(file_name);
+      */
+
+      f->eax = filesys_create(first,0,true);
+
+      break;
+    }
+
+    case SYS_READDIR:
+    {
+      check_valid_pointer((f->esp) + 4); //fd = first
+      check_valid_pointer((f->esp) + 8); //buffer = second
+      bool success = true;
+      struct file *fp = thread_current()->f_d[first];
+      bool inode_dir;
+      struct inode_disk *disk_inode = NULL;
+      disk_inode = calloc(1, sizeof *disk_inode);
+      if(disk_inode == NULL || file_get_inode(fp) == NULL)
+        inode_dir = false;
+      else
+        {
+          cache_read(file_get_inode(fp), disk_inode); //?
+          if (disk_inode->is_dir == true)
+            inode_dir = true;
+          else
+            inode_dir = false;
+          free(disk_inode);
+        }
+        if(inode_dir)
+        {
+          if(!dir_readdir((struct dir*)fp, second))
+            success = false;
+        }
+        else
+          success = false;
+
+        f->eax = success;
+        break;
+    }
+
+    case SYS_ISDIR:
+    {
+      struct file *fp = thread_current()->f_d[first];
+      bool inode_dir;
+      struct inode_disk *disk_inode = NULL;
+      disk_inode = calloc(1, sizeof *disk_inode);
+      if(disk_inode == NULL || file_get_inode(fp) == NULL)
+        inode_dir = false;
+      else
+        {
+          cache_read(file_get_inode(fp), disk_inode); //?
+          if (disk_inode->is_dir == true)
+            inode_dir = true;
+          else
+            inode_dir = false;
+          free(disk_inode);
+        }
+
+      f->eax = inode_dir;
+      break;
+    }
+
+    case SYS_INUMBER:
+    {
+      struct file *fp = thread_current()->f_d[first];
+      if(fp == NULL)
+        f->eax = -1;
+      else
+        f->eax = inode_get_inumber(file_get_inode(fp));
+
+      break;
+    }
+
   }
+
   //thread_exit ();  //initial
 }
 
@@ -393,7 +546,7 @@ void userp_exit (int status)  //userprog_exit
     }
   }
   printf("%s: exit(%d)\n", thread_name(), status);
-  thread_exit(); 
+  thread_exit();
 }
 
 //test for git

@@ -99,7 +99,7 @@ struct thread
 
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
-    struct semaphore child_lock;        /* Sema for child waiting. */ 
+    struct semaphore child_lock;        /* Sema for child waiting. */
     // struct semaphore load_lock;          /* Sema for load lock. */
     struct semaphore memory_lock;        /* Sema for memory - pass when child die - lock. */
     struct semaphore load_suc_lock;      /* Sema for load success lock. */
@@ -114,10 +114,12 @@ struct thread
     struct list child_list;             /* List of child. */
     struct list_elem child_elem;        /* children list element. */
     int exit_status;
-    struct file* f_d[128];               /* File descriptor. */     
-    
+    struct file* f_d[128];               /* File descriptor. */
+
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
+
+    struct dir *dir;
   };
 
 /* If false (default), use round-robin scheduler.
