@@ -23,17 +23,6 @@ MIN (size_t a, size_t b)
   return a < b ? a : b;
 }
 
-/* In-memory inode. */
-struct inode
-  {
-    struct list_elem elem;              /* Element in inode list. */
-    disk_sector_t sector;               /* Sector number of disk location. */
-    int open_cnt;                       /* Number of openers. */
-    bool removed;                       /* True if deleted, false otherwise. */
-    int deny_write_cnt;                 /* 0: writes ok, >0: deny writes. */
-    struct inode_disk data;             /* Inode content. */
-  };
-
 bool inode_indexed_allocate(struct inode_disk *disk_inode);
 bool inode_grow(struct inode_disk *disk_inode, off_t length);
 disk_sector_t inode_index_to_sector(const struct inode_disk *idisk, off_t index);
@@ -429,7 +418,7 @@ inode_grow(struct inode_disk *disk_inode, off_t length)
   int i;
 
   // (1) direct sectors
-  len = MIN(num_sectors, 12 * 8);
+  len = MIN(num_sectors, NUM_DIRECT_SECTORS);
   for(i = 0; i < len; ++i)
   {
     if(disk_inode->direct_index[i] == 0) { // unoccupied
@@ -524,7 +513,7 @@ inode_free(struct inode *inode)
   size_t i, len;
 
   // (1) direct sectors
-  len = MIN(num_sectors, 12 * 8);
+  len = MIN(num_sectors, NUM_DIRECT_SECTORS);
   for (i = 0; i < len; ++ i) {
     free_map_release (inode->data.direct_index[i], 1);
   }
@@ -561,7 +550,7 @@ inode_free_indirect(disk_sector_t entry, size_t num_sectors, int level)
     return;
   }
 
-  disk_sector_t indirect_blocks[NUM_INDIRECT_SECTORS];
+  disk_sector_t indirect_blocks[NUM_INDIRECT_SECTORS] = {-1,};
   cache_read(entry, &indirect_blocks);
 
   size_t unit = (level == 1 ? 1 : NUM_INDIRECT_SECTORS);
@@ -603,7 +592,7 @@ inode_index_to_sector(const struct inode_disk *idisk, off_t index)
   if (index < index_limit) {
     // printf(" **** single indirect\n"); //debug
     struct inode_indirect_block_sector *indirect_idisk;
-    disk_sector_t indirect_blocks[NUM_INDIRECT_SECTORS];
+    disk_sector_t indirect_blocks[NUM_INDIRECT_SECTORS] = {-1, };
     disk_sector_t *ibp = &indirect_blocks;
 
     ibp= calloc(1, sizeof(disk_sector_t) * NUM_INDIRECT_SECTORS);

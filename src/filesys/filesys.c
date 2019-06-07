@@ -60,17 +60,14 @@ filesys_create (const char *name, off_t initial_size, bool is_dir)
   char *file_name = palloc_get_page(0);
   strlcpy (name_, name, PGSIZE);
 
-
   struct dir *dir = path_to_dir(name_, file_name);
   bool success = false;
 
-  if(strcmp(file_name, ".") != 0 && strcmp(file_name, "..")!=0)
-  {
     success = (dir != NULL
                   && free_map_allocate (1, &inode_sector)
                   && inode_create (inode_sector, initial_size, is_dir)
                   && dir_add (dir, file_name, inode_sector));
-  }
+
   if (!success && inode_sector != 0)
     free_map_release (inode_sector, 1);
   dir_close (dir);
@@ -188,6 +185,9 @@ path_to_dir(char *path_name, char *file_name)
   if(strlen(path_name) == 0)
     return NULL;
 
+    if(strcmp(path_name, "/")==0)
+      return dir_open_root();
+
     /*parse path_name and find dir*/
     tok = strtok_r(path_name, "/", &ptr);
     ntok = strtok_r(NULL, "/", &ptr);
@@ -203,7 +203,7 @@ path_to_dir(char *path_name, char *file_name)
         }
     }
 
-    /*this inode must dir*/
+    /*this inode dir?*/
     struct inode *inode;
 
     while(tok != NULL && ntok != NULL)
@@ -211,19 +211,21 @@ path_to_dir(char *path_name, char *file_name)
       if(dir_lookup(dir, tok, &inode))
       {
         bool inode_dir;
+
         struct inode_disk *disk_inode = NULL;
         disk_inode = calloc(1, sizeof *disk_inode);
         if(disk_inode == NULL || inode == NULL)
           inode_dir = false;
         else
           {
-            cache_read(inode, disk_inode); //?
+            cache_read(inode->sector, disk_inode); //?
             if (disk_inode->is_dir == true)
               inode_dir = true;
             else
               inode_dir = false;
             free(disk_inode);
           }
+
         if(inode_dir)
         {
           dir = dir_open(inode);
